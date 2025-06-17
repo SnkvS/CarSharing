@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: 6
+      author: Serhii Senkiv
+      changes:
+        - createTable:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: FK_roles_user_id
+                    referencedTableName: users
+                    referencedColumnNames: id
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: FK_users_roles_id
+                    referencedTableName: roles
+                    referencedColumnNames: id
+                    nullable: false
