@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: Serhii Senkiv
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_payments
+                    foreignKeyName: fk_payments_on_rental
+                    referencedTableName: rentals
+                    referencedColumnNames: id
+                  name: rental_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: status
+                  type: VARCHAR(255)
+              - column:
+                  name: url
+                  type: VARCHAR(255)
+              - column:
+                  name: session_id
+                  type: BIGINT
+              - column:
+                  name: amount_to_pay
+                  type: DECIMAL
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_deleted
+                  type: TINYINT
+            tableName: payments
