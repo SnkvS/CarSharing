@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: Serhii Senkiv
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_rentals
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: rental_date
+                  type: DATE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: return_date
+                  type: DATE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: actual_return_date
+                  type: DATE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_deleted
+                  type: TINYINT
+              - column:
+                  constraints:
+                    foreignKeyName: fk_cars
+                    referencedTableName: cars
+                    referencedColumnNames: id
+                    nullable: false
+                  name: car_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    foreignKeyName: fk_users
+                    referencedTableName: users
+                    referencedColumnNames: id
+                    nullable: false
+                  name: user_id
+                  type: BIGINT
+            tableName: rentals
+
+
