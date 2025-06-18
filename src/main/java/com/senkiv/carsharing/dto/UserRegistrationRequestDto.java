@@ -1,6 +1,6 @@
 package com.senkiv.carsharing.dto;
 
-import com.senkiv.carsharing.validation.FieldMatch;
+import com.senkiv.carsharing.validation.annotation.FieldMatch;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

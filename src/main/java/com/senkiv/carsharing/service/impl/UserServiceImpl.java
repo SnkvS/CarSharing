@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     public static final String EMAIL_ALREADY_USED_MESSAGE = "Email %s is already used.";
-    public static final String ERROR_DEFAULT_ROLE_ASSIGNMENT = 
+    public static final String ERROR_DEFAULT_ROLE_ASSIGNMENT =
             "Cannot assign default role to user.";
     public static final String USER_NOT_FOUND_MESSAGE = "User with id %d not found";
     public static final String ROLE_NOT_FOUND_MESSAGE = "Role %s not found";
