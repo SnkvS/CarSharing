@@ -18,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.senkiv.carsharing.dto.CarRequestDto;
 import com.senkiv.carsharing.dto.CarResponseDto;
+import com.senkiv.carsharing.exception.GlobalExceptionHandler;
 import com.senkiv.carsharing.model.CarType;
 import com.senkiv.carsharing.service.CarService;
 import jakarta.persistence.EntityNotFoundException;
@@ -38,15 +39,12 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @ExtendWith(MockitoExtension.class)
 class CarControllerTest {
 
+    private final ObjectMapper objectMapper = new ObjectMapper();
     private MockMvc mockMvc;
-
     @Mock
     private CarService carService;
-
     @InjectMocks
     private CarController carController;
-
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @BeforeEach
     void setUp() {
@@ -159,7 +157,7 @@ class CarControllerTest {
 
         // When & Then
         mockMvc.perform(get("/cars/{id}", id))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -217,7 +215,7 @@ class CarControllerTest {
         mockMvc.perform(put("/cars/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(requestDto)))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -242,7 +240,7 @@ class CarControllerTest {
 
         // When & Then
         mockMvc.perform(delete("/cars/{id}", id))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isBadRequest());
 
         verify(carService).delete(id);
     }

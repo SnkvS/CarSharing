@@ -24,8 +24,6 @@ databaseChangeLog:
                   name: return_date
                   type: DATE
               - column:
-                  constraints:
-                    nullable: false
                   name: actual_return_date
                   type: DATE
               - column:

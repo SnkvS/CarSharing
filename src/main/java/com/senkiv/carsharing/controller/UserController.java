@@ -22,23 +22,26 @@ public class UserController {
     private final UserService userService;
 
     @PutMapping("/{id}/role")
-    @PreAuthorize("hasRole('ROLE_MANAGER')")
+    @PreAuthorize("hasRole('MANAGER')")
     public UserResponseDto updateRole(@PathVariable Long id,
             @RequestBody @Valid UserRoleUpdateRequestDto requestDto) {
         return userService.updateRole(id, requestDto);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/me")
     public UserResponseDto getMyProfile() {
         return userService.getCurrentUser();
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PutMapping("/me")
     public UserResponseDto updateProfile(
             @RequestBody @Valid UserProfileUpdateRequestDto requestDto) {
         return userService.updateProfile(requestDto);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PatchMapping("/me")
     public UserResponseDto patchProfile(
             @RequestBody @Valid UserProfileUpdateRequestDto requestDto) {
